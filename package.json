@@ -1,17 +1,31 @@
 {
-  "name": "example-create-react-app-express",
+  "name": "curr-calc",
   "version": "1.0.0",
+  "description": "currency calc using node.js and react.js",
+  "main": "index.js",
+  "repository": "https://github.com/amdomanska/currcalc-react.git",
+  "author": "Agnieszka Domanska <domanska.a.m.87@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "lint": "eslint **/*.js",
+    "babel": "babel --presets es2015 js/server.js -o build/main.bundle.js"
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "node-fetch": "^2.1.2",
+    "open": "0.0.5",
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0",
-    "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.7.0"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "concurrently": "^3.5.0"
   }
 }
