@@ -32,8 +32,6 @@ app.get('/main', function (req, res) {
       let currList = Object.keys(myJson.rates);
       console.log("I get currList");
       res.send({express: currList});
-      //res.render('src/mainView.ejs',
-      //  Object.assign({currList: currList},req.session.passedParams));
     });
   });
 /*
