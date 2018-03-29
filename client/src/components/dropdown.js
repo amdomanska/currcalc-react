@@ -5,28 +5,26 @@ export class Dropdown extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      list: this.props.list
+      list: []
     };
   }
 
 componentDidMount(){
-
+  fetch('https://api.fixer.io/latest')
+    .then(response => response.json())
+    .then(myJson => {
+      this.setState({ list: Object.keys(myJson.rates) });
+    });
 }
 
 
   render(){
-    let currA = "ABC";
+    var selectCurr = curr =>
+     <select>{(this.state.list).map(x => <option>{x}</option>)}</select>;
+
     return (
       <div>
-      <p>
-        {this.state.list}
-      </p>
-        <div>
-          <h2> currencyDropdown </h2>
-          <select name="currA" id="currA">
-            <option value= "{ currA }" selected="selected">{ currA }</option>
-          </select>
-        </div>
+        {selectCurr()}
       </div>
     );
   }

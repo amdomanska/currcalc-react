@@ -3,7 +3,6 @@ import './App.css';
 
 import { Dropdown } from './components/dropdown'
 
-
 class App extends Component {
 
   state = {
@@ -29,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <Dropdown list={this.state.response}/>
+          <Dropdown />
         </div>
 
       </div>
