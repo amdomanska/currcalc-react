@@ -18,14 +18,10 @@ componentDidMount(){
     });
 }
 
-/*change(event) {
-  this.props.callbackFromParent(event.target.value);
-}*/
-
   render(){
     var selectCurr = (curr) =>
      <select
-      onChange={event => this.props.callbackFromParent.bind(null, this.props.stateKey, this.props.val+1)}
+      onChange={event => this.props.callbackFromParent(this.props.stateKey, event.target.value)}
      >
      {(this.state.list).map(x => <option>{x}</option>)}
      </select>;

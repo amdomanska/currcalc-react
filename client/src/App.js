@@ -4,42 +4,41 @@ import './App.css';
 import { Dropdown } from './components/dropdown'
 
 class App extends Component {
-
   constructor(props) {
-    super(props);
-    this.calculateRate = this.calculateRate.bind(this);
-    this.callApi = this.callApi.bind(this);
-    this.state = {
-      response: "",
-      currA: 0,
-      currB: 1
-    }
+   super(props);
+   this.calculateRate = this.calculateRate.bind(this);
+   this.callApi = this.callApi.bind(this);
+   this.state = {
+     response: "",
+     currA: 0,
+     currB: 1
+   }
   }
 
-    componentDidMount() {
-      this.callApi()
-        .then(res => this.setState({ response: res.express }))
-        .catch(err => console.log(err));
-    }
+  componentDidMount() {
 
-    callApi = async () => {
-      const response = await fetch('/main');
-      const body = await response.json();
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => {console.log(err)});
 
-      if (response.status !== 200) throw Error(body.message);
+  }
 
-      return body;
-    };
+  callApi = async () => {
+    const response = await fetch('/main');
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  }
 
-    calculateRate = (key, val) => {
+  calculateRate = (key, val) => {
     // if the calling agent sent currA data, update currA,
     // else if the calling agent sent currB data, update currB
     if (key === 'A') this.setState({currA: val})
     if (key === 'B') this.setState({currB: val})
     console.log('updated curr' + key + ' to ' + val);
-    }
+  }
 
-    render() {
+  render() {
     return (
       <div className='App'>
         <div>
@@ -47,14 +46,13 @@ class App extends Component {
             stateKey={'A'} val={this.state.currA} />
           <Dropdown callbackFromParent={this.calculateRate}
             stateKey={'B'} val={this.state.currB} />
-            <p>
-            {this.state.currA}
-            {this.state.currB}
-            </p>
         </div>
+        {this.state.currA}
+        {this.state.currB}
       </div>
     );
-    }
+  }
 }
+
 
 export default App;
