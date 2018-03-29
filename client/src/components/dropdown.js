@@ -18,16 +18,14 @@ componentDidMount(){
     });
 }
 
-change(event) {
-  this.setState({ selected: event.target.value });
-  this.props.callbackFromParent(this.state.selected);
-}
+/*change(event) {
+  this.props.callbackFromParent(event.target.value);
+}*/
 
   render(){
     var selectCurr = (curr) =>
      <select
-      onChange={this.change.bind(this)}
-      value={this.state.currA}
+      onChange={event => this.props.callbackFromParent.bind(null, this.props.stateKey, this.props.val+1)}
      >
      {(this.state.list).map(x => <option>{x}</option>)}
      </select>;

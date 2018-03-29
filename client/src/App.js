@@ -5,12 +5,16 @@ import { Dropdown } from './components/dropdown'
 
 class App extends Component {
 
-  state = {
+  constructor(props) {
+    super(props);
+    this.calculateRate = this.calculateRate.bind(this);
+    this.callApi = this.callApi.bind(this);
+    this.state = {
       response: "",
-      currA: "",
-      currB: "",
-      rate: 0
-    };
+      currA: 0,
+      currB: 1
+    }
+  }
 
     componentDidMount() {
       this.callApi()
@@ -27,28 +31,30 @@ class App extends Component {
       return body;
     };
 
-    calculateRate = (currA) => {
-      this.setState({currA: currA});
-      //this.setState({currB: currB});
-      //this.state.rate = Math.round((rateCurrB / rateCurrA) * 10000) / 10000;
-      //this.state.result = Math.round((req.body.value * (rateCurrB / rateCurrA)) * 100) / 100;
+    calculateRate = (key, val) => {
+    // if the calling agent sent currA data, update currA,
+    // else if the calling agent sent currB data, update currB
+    if (key === 'A') this.setState({currA: val})
+    if (key === 'B') this.setState({currB: val})
+    console.log('updated curr' + key + ' to ' + val);
     }
 
-    calculate
-
-  render() {
+    render() {
     return (
-      <div className="App">
+      <div className='App'>
         <div>
-          <Dropdown callbackFromParent={this.calculateRate}/>
+          <Dropdown callbackFromParent={this.calculateRate}
+            stateKey={'A'} val={this.state.currA} />
+          <Dropdown callbackFromParent={this.calculateRate}
+            stateKey={'B'} val={this.state.currB} />
+            <p>
+            {this.state.currA}
+            {this.state.currB}
+            </p>
         </div>
-        <p>
-          {this.state.currA}
-        </p>
-
       </div>
     );
-  }
+    }
 }
 
 export default App;
