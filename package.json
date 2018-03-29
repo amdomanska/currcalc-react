@@ -19,7 +19,8 @@
     "express-session": "^1.15.6",
     "node-fetch": "^2.1.2",
     "open": "0.0.5",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-widgets": "^4.2.6"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

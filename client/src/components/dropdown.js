@@ -5,7 +5,8 @@ export class Dropdown extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      list: []
+      list: [],
+      selected: ""
     };
   }
 
@@ -17,10 +18,19 @@ componentDidMount(){
     });
 }
 
+change(event) {
+  this.setState({ selected: event.target.value });
+  this.props.callbackFromParent(this.state.selected);
+}
 
   render(){
-    var selectCurr = curr =>
-     <select>{(this.state.list).map(x => <option>{x}</option>)}</select>;
+    var selectCurr = (curr) =>
+     <select
+      onChange={this.change.bind(this)}
+      value={this.state.currA}
+     >
+     {(this.state.list).map(x => <option>{x}</option>)}
+     </select>;
 
     return (
       <div>

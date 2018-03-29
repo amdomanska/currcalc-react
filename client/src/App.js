@@ -6,7 +6,10 @@ import { Dropdown } from './components/dropdown'
 class App extends Component {
 
   state = {
-      response: ''
+      response: "",
+      currA: "",
+      currB: "",
+      rate: 0
     };
 
     componentDidMount() {
@@ -24,12 +27,24 @@ class App extends Component {
       return body;
     };
 
+    calculateRate = (currA) => {
+      this.setState({currA: currA});
+      //this.setState({currB: currB});
+      //this.state.rate = Math.round((rateCurrB / rateCurrA) * 10000) / 10000;
+      //this.state.result = Math.round((req.body.value * (rateCurrB / rateCurrA)) * 100) / 100;
+    }
+
+    calculate
+
   render() {
     return (
       <div className="App">
         <div>
-          <Dropdown />
+          <Dropdown callbackFromParent={this.calculateRate}/>
         </div>
+        <p>
+          {this.state.currA}
+        </p>
 
       </div>
     );
