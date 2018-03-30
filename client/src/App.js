@@ -14,7 +14,6 @@ class App extends Component {
      currB: "AUD",
      currAval: 1,
      currBval: 1,
-     lastCurrChanged: ""
    }
   }
 
@@ -36,23 +35,21 @@ class App extends Component {
   setCurrs = (key, val) => {
     // if the calling agent sent currA data, update currA,
     // else if the calling agent sent currB data, update currB
-    if (key === 'A') this.setState({currA: val, lastCurrChanged: "A"})
-    if (key === 'B') this.setState({currB: val, lastCurrChanged: "B"})
+    if (key === 'A') this.setState({currA: val})
+    if (key === 'B') this.setState({currB: val})
   }
 
   render() {
     return (
       <div className='App'>
-        <Result data={this.state} />
+
         <div class="rowC">
-          <input type="text" value={this.state.currAval} onChange={ event => this.setState({currAval: event.target.value, lastCurrChanged: "A"})} />
+          <input type="text" value={this.state.currAval} onChange={ event => this.setState({currAval: event.target.value})} />
           <Dropdown callbackFromParent={this.setCurrs}
             stateKey={'A'} val={this.state.currA} />
-        </div>
-        <div class="rowC">
-          <input type="text" value={this.state.currBval} onChange={ event => this.setState({currBval: event.target.value, lastCurrChanged: "B"})} />
-            <Dropdown callbackFromParent={this.setCurrs}
-              stateKey={'B'} val={this.state.currB} />
+          <Result data={this.state} />
+          <Dropdown callbackFromParent={this.setCurrs}
+            stateKey={'B'} val={this.state.currB} />
         </div>
       </div>
     );
