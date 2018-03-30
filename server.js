@@ -27,8 +27,9 @@ app.get('/rates', function (req, res) {
   fetch('https://api.fixer.io/latest')
     .then(response => response.json())
     .then(myJson => {
-      let currList = Object.keys(myJson.rates);
-      res.send({express: currList});
+      let rates = myJson.rates;
+      rates["EUR"] = 1;
+      res.send({rates});
     });
   });
 

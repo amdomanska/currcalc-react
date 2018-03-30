@@ -4,31 +4,19 @@ export class Dropdown extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      list: [],
-      selected: ""
-    };
   }
 
-componentDidMount(){
-  fetch('https://api.fixer.io/latest')
-    .then(response => response.json())
-    .then(myJson => {
-      this.setState({ list: Object.keys(myJson.rates) });
-    });
-}
-
   render(){
-    var selectCurr = (curr) =>
+    var selectCurr = () =>
      <select
-      onChange={event => this.props.callbackFromParent(this.props.stateKey, event.target.value)}
+      onChange = {event => this.props.onChange(this.props.stateKey, event.target.value)}
      >
-     {(this.state.list).map(x => <option>{x}</option>)}
+     {(this.props.currencies).map(x => <option>{x}</option>)}
      </select>;
 
     return (
       <div>
-        {selectCurr()}
+        {this.props.currencies ? selectCurr() : "loading..."}
       </div>
     );
   }
