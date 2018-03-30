@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import './App.css';
+//import './App.css';
 
 import { Dropdown } from './components/dropdown'
+import { Result } from './components/result'
 
 class App extends Component {
   constructor(props) {
    super(props);
-   this.calculateRate = this.calculateRate.bind(this);
    this.callApi = this.callApi.bind(this);
+   this.setCurrs = this.setCurrs.bind(this);
    this.state = {
-     response: "",
-     currA: 0,
-     currB: 1
+     currA: "",
+     currB: "",
+     currAval: 0,
+     currBval: 0,
+     lastCurrChanged: ""
    }
   }
 
@@ -30,25 +33,25 @@ class App extends Component {
     return body;
   }
 
-  calculateRate = (key, val) => {
+  setCurrs = (key, val) => {
     // if the calling agent sent currA data, update currA,
     // else if the calling agent sent currB data, update currB
-    if (key === 'A') this.setState({currA: val})
-    if (key === 'B') this.setState({currB: val})
-    console.log('updated curr' + key + ' to ' + val);
+    if (key === 'A') this.setState({currA: val, lastCurrChanged: "A"})
+    if (key === 'B') this.setState({currB: val, lastCurrChanged: "B"})
   }
 
   render() {
     return (
       <div className='App'>
+        <Result data={this.state} />
         <div>
-          <Dropdown callbackFromParent={this.calculateRate}
+          <input type="text" value={this.state.currAval} onChange={ event => this.setState({currAval: event.target.value, lastCurrChanged: "A"})} />
+          <Dropdown callbackFromParent={this.setCurrs}
             stateKey={'A'} val={this.state.currA} />
-          <Dropdown callbackFromParent={this.calculateRate}
-            stateKey={'B'} val={this.state.currB} />
+          <input type="text" value={this.state.currBval} onChange={ event => this.setState({currBval: event.target.value, lastCurrChanged: "B"})} />
+            <Dropdown callbackFromParent={this.setCurrs}
+              stateKey={'B'} val={this.state.currB} />
         </div>
-        {this.state.currA}
-        {this.state.currB}
       </div>
     );
   }
