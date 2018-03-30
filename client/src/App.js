@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 //import './App.css';
 
-import { Dropdown } from './components/dropdown'
-import { Result } from './components/result'
+import { Dropdown } from './components/Dropdown'
+import { Result } from './components/Result'
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/main');
+    const response = await fetch('/rates');
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
     return body;
