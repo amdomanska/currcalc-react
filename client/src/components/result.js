@@ -33,7 +33,7 @@ componentWillReceiveProps(nextProps) {
             }));
           }
           else {
-            let newVal = Math.round((this.state.data.currBval * (rateCurrB / rateCurrA)) * 100) / 100;
+            let newVal = Math.round((this.state.data.currBval * (rateCurrA / rateCurrB)) * 100) / 100;
             //this.setState({ data: {currAval: newVal} });
             this.setState(prevState => ({
               data: {
