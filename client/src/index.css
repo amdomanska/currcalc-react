@@ -1,11 +1,21 @@
-input[type=text], select {
-    width: 24%;
+input[type=text] {
+    width: 15%;
     padding: 12px 20px;
-    //margin: 8px 0;
+    margin: 8px 0;
     display: block;
-    //border: 1px solid #ccc;
-    //border-radius: 4px;
-    //box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 /*input[type=submit] {
@@ -17,15 +27,16 @@ input[type=text], select {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}*/
+}
 
 input[type=submit]:hover {
     background-color: #45a049;
-}
+}*/
 
 div {
     border-radius: 5px;
     background-color: #f2f2f2;
+    padding: 3px;
 }
 
 h1 {
@@ -42,3 +53,5 @@ h1 {
   font-weight: bold;
   font-size: 30px;
 }
+
+.rowC{display:flex; flex-direction:row;}

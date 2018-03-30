@@ -10,10 +10,10 @@ class App extends Component {
    this.callApi = this.callApi.bind(this);
    this.setCurrs = this.setCurrs.bind(this);
    this.state = {
-     currA: "",
-     currB: "",
-     currAval: 0,
-     currBval: 0,
+     currA: "AUD",
+     currB: "AUD",
+     currAval: 1,
+     currBval: 1,
      lastCurrChanged: ""
    }
   }
@@ -44,10 +44,12 @@ class App extends Component {
     return (
       <div className='App'>
         <Result data={this.state} />
-        <div>
+        <div class="rowC">
           <input type="text" value={this.state.currAval} onChange={ event => this.setState({currAval: event.target.value, lastCurrChanged: "A"})} />
           <Dropdown callbackFromParent={this.setCurrs}
             stateKey={'A'} val={this.state.currA} />
+        </div>
+        <div class="rowC">
           <input type="text" value={this.state.currBval} onChange={ event => this.setState({currBval: event.target.value, lastCurrChanged: "B"})} />
             <Dropdown callbackFromParent={this.setCurrs}
               stateKey={'B'} val={this.state.currB} />
