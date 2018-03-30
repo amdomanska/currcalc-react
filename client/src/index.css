@@ -1,14 +1,14 @@
 input[type=text], select {
     width: 24%;
     padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    //margin: 8px 0;
+    display: block;
+    //border: 1px solid #ccc;
+    //border-radius: 4px;
+    //box-sizing: border-box;
 }
 
-input[type=submit] {
+/*input[type=submit] {
     width: 100%;
     background-color: #4CAF50;
     color: white;
@@ -17,7 +17,7 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
+}*/
 
 input[type=submit]:hover {
     background-color: #45a049;
@@ -26,9 +26,19 @@ input[type=submit]:hover {
 div {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
 }
 
 h1 {
     text-align: center;
+}
+
+.firstValue {
+  color: gray;
+  font-size: 15px;
+}
+
+.result {
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
 }
