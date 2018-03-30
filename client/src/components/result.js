@@ -24,11 +24,23 @@ componentWillReceiveProps(nextProps) {
           //let rate = Math.round((rateCurrB / rateCurrA) * 10000) / 10000;
           if (this.state.data.lastCurrChanged === "A"){
             let newVal = Math.round((this.state.data.currAval * (rateCurrB / rateCurrA)) * 100) / 100;
-            this.setState({ data: {currBval: newVal} });
+            //this.setState({ data: {currBval: newVal} });
+            this.setState(prevState => ({
+              data: {
+                ...prevState.data,
+                currBval: newVal
+              }
+            }));
           }
           else {
             let newVal = Math.round((this.state.data.currBval * (rateCurrB / rateCurrA)) * 100) / 100;
-            this.setState({ data: {currAval: newVal} });
+            //this.setState({ data: {currAval: newVal} });
+            this.setState(prevState => ({
+              data: {
+                ...prevState.data,
+                currAval: newVal
+              }
+            }));
           }
         });
     }
