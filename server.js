@@ -22,30 +22,33 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   .use(express.static('public'));
 
 app.get('/rates', async function (req, res) {
-  // res.header('Cache-Control', 'public, max-age=60');
-
   // check cache
+  let rates = null;
+
   if (getAsync) {
     const cachedRates = await getAsync('rates');
     if (cachedRates) {
-      console.log(`cache hit: ${cachedRates}`);
-      return res.send({rates: JSON.parse(cachedRates)});
+      rates = JSON.parse(cachedRates);
+      res.header('Cache-Control', 'public, max-age=10');
+      res.send({rates: rates});
+    } else {
+      try {
+        console.log('fetching rates');
+        const response = await fetch('https://api.fixer.io/latest');
+        const json = await response.json();
+        rates = json.rates;
+        rates['EUR'] = 1;
+        if (setAsync) {
+          await setAsync('rates', JSON.stringify(rates), 'EX', 60); // expire cache after 60s
+        }
+        res.header('Cache-Control', 'public, max-age=10');
+        res.send({rates: rates});
+      } catch (err) {
+        console.error(`error getting rates: ${err}`);
+        console.log(res);
+        res.status(500);
+      }
     }
-  }
-
-  try {
-    console.log('fetching rates');
-    const response = await fetch('https://api.fixer.io/latest');
-    const json = await response.json();
-    const rates = json.rates;
-    rates['EUR'] = 1;
-    if (setAsync) {
-      await setAsync('rates', JSON.stringify(rates), 'EX', 60); // expire cache after 10s
-    }
-    res.send({rates});
-  } catch (err) {
-    console.error(`error getting rates: ${err}`);
-    res.status(500);
   }
 });
 
