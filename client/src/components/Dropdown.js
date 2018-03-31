@@ -10,7 +10,7 @@ export class Dropdown extends React.Component {
       <select
         onChange={event => this.props.onChange(this.props.stateKey, event.target.value)}
       >
-        {(this.props.currencies).map(x => <option>{x}</option>)}
+        {(this.props.currencies).map((x,i) => <option key={i}>{x}</option>)}
       </select>;
 
     return (
