@@ -1,0 +1,5 @@
+language: node_js
+# .nvmrc specifies node version, so no need to duplicate it here
+before_script:
+  - yarn --cwd client
+cache: yarn

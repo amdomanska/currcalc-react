@@ -1,6 +1,10 @@
+[![Build Status](https://travis-ci.org/amdomanska/currcalc-react.svg?branch=master)](https://travis-ci.org/amdomanska/currcalc-react)
+
 To start the app run in command line:
 
->> yarn dev
+    yarn
+    yarn --cwd client
+    yarn dev
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
