@@ -10,8 +10,9 @@
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "lint": "eslint . --fix",
-    "babel": "babel --presets es2015 js/server.js -o build/main.bundle.js"
+    "lint": "eslint .",
+    "babel": "babel --presets es2015 js/server.js -o build/main.bundle.js",
+    "test": "yarn --cwd client run test"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
