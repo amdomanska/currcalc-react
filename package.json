@@ -12,7 +12,8 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "lint": "eslint .",
     "babel": "babel --presets es2015 js/server.js -o build/main.bundle.js",
-    "test": "yarn --cwd client run test"
+    "test": "yarn --cwd client run test",
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -22,7 +23,8 @@
     "open": "0.0.5",
     "path": "^0.12.7",
     "prop-types": "^15.6.1",
-    "react-widgets": "^4.2.6"
+    "react-widgets": "^4.2.6",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -6,10 +6,6 @@ export class Value extends React.Component {
     super(props);
   }
 */
-  propTypes = {
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.func.isRequired
-  }
 
   render () {
     return (
@@ -18,4 +14,9 @@ export class Value extends React.Component {
       </div>
     );
   }
+}
+
+Value.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.number
 }

@@ -7,10 +7,6 @@ export class Result extends React.Component {
   }
 */
 
-  propTypes = {
-    result: PropTypes.number.isRequired
-  }
-
   render () {
     return (
       <div>
@@ -18,4 +14,8 @@ export class Result extends React.Component {
       </div>
     );
   }
+}
+
+Result.propTypes = {
+  result: PropTypes.number
 }

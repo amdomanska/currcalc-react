@@ -6,11 +6,6 @@ export class Dropdown extends React.Component {
     super(props);
   } */
 
-  propTypes = {
-    onChange: PropTypes.func.isRequired,
-    stateKey: PropTypes.string.isRequired,
-    currencies: PropTypes.array.isRequired
-  }
 
   render () {
     var selectCurr = () =>
@@ -26,4 +21,10 @@ export class Dropdown extends React.Component {
       </div>
     );
   }
+}
+
+Dropdown.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  stateKey: PropTypes.string.isRequired,
+  currencies: PropTypes.array
 }

@@ -29,6 +29,9 @@ app.get('/rates', function (req, res) {
       let rates = myJson.rates;
       rates['EUR'] = 1;
       res.send({rates});
+    })
+    .catch(err => {
+      console.log("Couldn't fetch data",err);
     });
 });
 
