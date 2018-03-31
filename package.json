@@ -10,7 +10,7 @@
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "babel": "babel --presets es2015 js/server.js -o build/main.bundle.js"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "node-fetch": "^2.1.2",
     "open": "0.0.5",
     "path": "^0.12.7",
+    "prop-types": "^15.6.1",
     "react-widgets": "^4.2.6"
   },
   "devDependencies": {

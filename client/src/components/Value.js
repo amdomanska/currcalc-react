@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Value extends React.Component {
-  constructor (props) {
+/*  constructor (props) {
     super(props);
+  }
+*/
+  propTypes = {
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.func.isRequired
   }
 
   render () {
