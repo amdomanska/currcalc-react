@@ -17,17 +17,24 @@ class App extends Component {
     };
   }
 
-  componentDidMount () {
-    this.callApi()
-      .then(res => this.setState({ rates: res.rates }))
-      .catch(err => { console.log(err); });
+  async componentDidMount () {
+    await this.callApi();
   }
 
   callApi = async () => {
-    const response = await fetch('/rates');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
+    try {
+      const response = await fetch('/rates');
+      if (response.status === 200) {
+        const body = await response.json();
+        this.setState({ rates: body.rates, error: null });
+      } else {
+        this.setState({ error: 'Error getting currency rates' });
+      }
+    } catch (err) {
+      console.log(err);
+      this.setState({ error: err });
+    }
+    setTimeout(this.callApi, 1000);
   }
 
   setCurrs = (key, val) => {
@@ -56,7 +63,7 @@ class App extends Component {
     const currencies = this.state.rates ? Object.keys(this.state.rates) : null;
     return (
       <div className='App'>
-
+        {this.state.error ? <div>"bleee"</div> : null}
         <div className='rowC'>
           <Value value={this.state.currAval} onChange={this.setValue} />
           <Dropdown onChange={this.setCurrs} currencies={currencies}
