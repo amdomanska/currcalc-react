@@ -18,4 +18,4 @@ export class Result extends React.Component {
 
 Result.propTypes = {
   result: PropTypes.number
-}
+};

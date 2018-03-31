@@ -17,6 +17,6 @@ export class Value extends React.Component {
 }
 
 Value.propTypes = {
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.number
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number
 };

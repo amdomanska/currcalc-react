@@ -1,24 +1,31 @@
 module.exports = {
-  "extends": [
+  env: {
+    browser: true,
+    es6: true,
+    node: true
+  },
+  extends: [
+    'eslint:recommended',
     "standard",
     "standard-react"
   ],
-  "parser": "babel-eslint",
-  "parserOptions": {
+  parser: "babel-eslint",
+  parserOptions: {
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+      jsx: true,
+      classes: true
+    },
+    sourceType: 'module',
     "allowImportExportEverywhere": true
   },
-  "plugins": [
-    "jest"
-  ],
-  "env": {
-    "jest/globals": true,
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "semi": [
-      "error",
-      "always"
-    ]
+  plugins: ['react'],
+  rules: {
+    indent: [2, 2, { 'SwitchCase': 1 }],
+    'no-console': 0,
+    'react/jsx-uses-vars': 2,
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always']
   }
 };
