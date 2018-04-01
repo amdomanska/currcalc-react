@@ -2,10 +2,11 @@ const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
+const {promisify} = require('util');
+const fs = require('fs');
 
 let getAsync, setAsync;
 if (process.env.REDIS_URL) {
-  const {promisify} = require('util');
   const redis = require('redis').createClient(process.env.REDIS_URL);
   getAsync = promisify(redis.get).bind(redis);
   setAsync = promisify(redis.set).bind(redis);
@@ -33,7 +34,7 @@ app.get('/rates', async function (req, res) {
       res.send({rates: rates});
     } else {
       try {
-        console.log('fetching rates');
+        console.log('fetching rates...');
         const response = await fetch('https://api.fixer.io/latest');
         const json = await response.json();
         rates = json.rates;
@@ -46,6 +47,32 @@ app.get('/rates', async function (req, res) {
       } catch (err) {
         console.error(`error getting rates: ${err}`);
         console.log(res);
+        res.status(500);
+      }
+    }
+  }
+});
+
+app.get('/names', async function (req, res) {
+  let names = null;
+  if (getAsync) {
+    const cachedNames = await getAsync('names');
+    if (cachedNames) {
+      names = JSON.parse(cachedNames);
+      res.header('Cache-Control', 'public, max-age=10');
+      res.send({names: names});
+    } else {
+      try {
+        // let filepath = path.join(__dirname, 'data/currencies.json'));
+        const rawNames = fs.readFileSync(path.join(__dirname, 'data/currencies.json'));
+        if (setAsync) {
+          await setAsync('names', rawNames, 'EX', 60); // expire cache after 60s
+        }
+        const names = JSON.parse(rawNames);
+        res.header('Cache-Control', 'public, max-age=10');
+        res.send({names: names});
+      } catch (err) {
+        console.error(`error getting names: ${err}`);
         res.status(500);
       }
     }

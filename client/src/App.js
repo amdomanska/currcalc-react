@@ -13,12 +13,14 @@ class App extends Component {
       currA: null,
       currB: null,
       currAval: 1,
-      result: null
+      result: null,
+      names: null
     };
   }
 
   async componentDidMount () {
     await this.callApi();
+    await this.callNames();
   }
 
   callApi = async () => {
@@ -26,15 +28,34 @@ class App extends Component {
       const response = await fetch('/rates');
       if (response.status === 200) {
         const body = await response.json();
-        this.setState({ rates: body.rates, error: null });
+        this.setState({ rates: body.rates, ratesError: null });
       } else {
-        this.setState({ error: 'Error getting currency rates' });
+        this.setState({ ratesError: 'Error getting currency rates' });
       }
     } catch (err) {
       console.log(err);
-      this.setState({ error: err });
+      this.setState({ ratesError: err });
     }
     setTimeout(this.callApi, 1000);
+  }
+
+  callNames = async () => {
+    try {
+      console.log('Fetching names...');
+      const response = await fetch('/names');
+      if (response.status === 200) {
+        const body = await response.json();
+        console.log(body.names);
+        this.setState({names: body.names, namesError: null});
+      } else {
+        this.setState({namesError: 'Error getting currency names'});
+      }
+    } catch (err) {
+      console.log(err);
+      this.setState({namesError: err});
+    }
+    console.log(this.state.names);
+    setTimeout(this.callNames, 1000);
   }
 
   setCurrs = (key, val) => {
@@ -63,7 +84,8 @@ class App extends Component {
     const currencies = this.state.rates ? Object.keys(this.state.rates) : null;
     return (
       <div className='App'>
-        {this.state.error ? <div>"bleee"</div> : null}
+        {this.state.ratesError ? <div> {`Couldn not load currencies... Waiting for server... ${this.state.names}`} </div> : null}
+        {this.state.namesError ? null : ' I got names!'}
         <div className='rowC'>
           <Value value={this.state.currAval} onChange={this.setValue} />
           <Dropdown onChange={this.setCurrs} currencies={currencies}
