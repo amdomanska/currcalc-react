@@ -24,10 +24,6 @@ div {
     padding: 3px;
 }
 
-h1 {
-    text-align: center;
-}
-
 .firstValue {
   color: gray;
   font-size: 15px;
@@ -42,3 +38,13 @@ h1 {
 }
 
 .rowC{display:flex; flex-direction:row;}
+
+.result-first-line {
+  font-size: 15px;
+  color: gray;
+}
+
+.result-second-line {
+  font-size: 25px;
+  color: black;
+}

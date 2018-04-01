@@ -82,7 +82,7 @@ class App extends Component {
     return (
       <div className='App'>
         {this.state.ratesError ? <div> {'Couldn not load currencies... Waiting for server... '} </div> : null}
-        {this.state.namesError ? <div> {'Couldn not load currencies... Waiting for server... '} </div> : <FullResult data={this.state} />}
+        {this.state.namesError ? null : <FullResult data={this.state} />}
         <div className='rowC'>
           <Value value={this.state.currAval} onChange={this.setValue} />
           <Dropdown onChange={this.setCurrs} currencies={currencies}
@@ -91,6 +91,9 @@ class App extends Component {
           <Dropdown onChange={this.setCurrs} currencies={currencies}
             stateKey={'B'} val={this.state.currB} />
         </div>
+        <footer>
+          <h5>@ data received from api.fixer.io</h5>
+        </footer>
       </div>
     );
   }

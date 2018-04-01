@@ -10,7 +10,7 @@ export class Result extends React.Component {
   render () {
     return (
       <div>
-        <p className='result'> = {this.props.result ? this.props.result : ''}</p>
+        <p className='result'> = {this.props.result ? this.props.result : ''} </p>
       </div>
     );
   }
