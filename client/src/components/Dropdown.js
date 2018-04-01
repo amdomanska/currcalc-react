@@ -7,7 +7,7 @@ export class Dropdown extends React.Component {
   } */
 
   render () {
-    var selectCurr = () =>
+    let selectCurr = () =>
       <select
         onChange={event => this.props.onChange(this.props.stateKey, event.target.value)}
       >

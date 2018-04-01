@@ -4,12 +4,12 @@ import React, { Component } from 'react';
 import { Dropdown } from './components/Dropdown';
 import { Result } from './components/Result';
 import { Value } from './components/Value';
+import { FullResult } from './components/FullResult';
 
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      rates: null,
       currA: null,
       currB: null,
       currAval: 1,
@@ -45,7 +45,6 @@ class App extends Component {
       const response = await fetch('/names');
       if (response.status === 200) {
         const body = await response.json();
-        console.log(body.names);
         this.setState({names: body.names, namesError: null});
       } else {
         this.setState({namesError: 'Error getting currency names'});
@@ -54,7 +53,6 @@ class App extends Component {
       console.log(err);
       this.setState({namesError: err});
     }
-    console.log(this.state.names);
     setTimeout(this.callNames, 1000);
   }
 
@@ -69,7 +67,6 @@ class App extends Component {
 
   update () {
     const { rates, currA, currB, currAval } = this.state;
-    console.log(currAval, currA, currB);
     if (rates && currA && currB) {
       const rateA = rates[currA];
       const rateB = rates[currB];
@@ -84,8 +81,8 @@ class App extends Component {
     const currencies = this.state.rates ? Object.keys(this.state.rates) : null;
     return (
       <div className='App'>
-        {this.state.ratesError ? <div> {`Couldn not load currencies... Waiting for server... ${this.state.names}`} </div> : null}
-        {this.state.namesError ? null : ' I got names!'}
+        {this.state.ratesError ? <div> {'Couldn not load currencies... Waiting for server... '} </div> : null}
+        {this.state.namesError ? <div> {'Couldn not load currencies... Waiting for server... '} </div> : <FullResult data={this.state} />}
         <div className='rowC'>
           <Value value={this.state.currAval} onChange={this.setValue} />
           <Dropdown onChange={this.setCurrs} currencies={currencies}
