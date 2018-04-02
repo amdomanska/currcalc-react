@@ -36,7 +36,7 @@ class App extends Component {
       console.log(err);
       this.setState({ ratesError: err });
     }
-    setTimeout(this.callApi, 60000);
+    setTimeout(this.callApi.bind(this), 60000);
   }
 
   callNames = async () => {
@@ -53,7 +53,7 @@ class App extends Component {
       console.log(err);
       this.setState({namesError: err});
     }
-    setTimeout(this.callNames, 60000);
+    setTimeout(this.callNames.bind(this), 60000);
   }
 
   setCurrs = (key, val) => {

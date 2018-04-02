@@ -32,5 +32,5 @@ export class FullResult extends React.Component {
 }
 
 FullResult.propTypes = {
-  data: PropTypes.Object
+  data: PropTypes.object
 };
