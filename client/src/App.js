@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import './App.css';
 
 import { Dropdown } from './components/Dropdown';
 import { Result } from './components/Result';

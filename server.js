@@ -18,7 +18,7 @@ if (process.env.REDIS_URL) {
 const app = express();
 const port = process.env.PORT || 5000; // eslint-disable-line
 
-app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+app.use(bodyParser.urlencoded({
   extended: true
 }))
   .use(express.static('public'));
