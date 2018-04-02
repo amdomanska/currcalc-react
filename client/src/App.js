@@ -21,6 +21,16 @@ class App extends Component {
   async componentDidMount () {
     await this.callApi();
     await this.callNames();
+    this.timer = setInterval(() => {
+      this.callApi().then();
+    }, 60000);
+    this.timer = setInterval(() => {
+      this.callNames().then();
+    }, 60000);
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.timer);
   }
 
   callApi = async () => {
@@ -36,7 +46,6 @@ class App extends Component {
       console.log(err);
       this.setState({ ratesError: err });
     }
-    setTimeout(this.callApi.bind(this), 60000);
   }
 
   callNames = async () => {
@@ -53,7 +62,6 @@ class App extends Component {
       console.log(err);
       this.setState({namesError: err});
     }
-    setTimeout(this.callNames.bind(this), 60000);
   }
 
   setCurrs = (key, val) => {

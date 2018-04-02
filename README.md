@@ -2,15 +2,28 @@
 
 To start the app run in command line:
 
-    yarn
-    yarn --cwd client
-    yarn dev
+yarn dev
 
+This project was bootstrapped with Create React App.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+Below you will find some information on how to perform common tasks.
+You can find the most recent version of this guide here.
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+Local tests with redis cache
+Start redis server with redis-server. By default it will run on redis://localhost:6379
+
+Run dev server with
+
+REDIS_URL=redis://localhost:6379 yarn dev
+
+Heroku deployemnt
+This app can be deployed to heroku with
+
+git push heroku master
+
+Note, that heroku redis plugin is required to use cache based on redis
+
+heroku addons:create heroku-redis:hobby-dev
 
 ## Table of Contents
 

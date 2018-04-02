@@ -7,6 +7,7 @@ const fs = require('fs');
 
 let getAsync, setAsync;
 if (process.env.REDIS_URL) {
+  console.log(`Using redis at ${process.env.REDIS_URL}`);
   const redis = require('redis').createClient(process.env.REDIS_URL);
   getAsync = promisify(redis.get).bind(redis);
   setAsync = promisify(redis.set).bind(redis);

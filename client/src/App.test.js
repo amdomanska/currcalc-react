@@ -10,7 +10,9 @@ fetchMock.get('*', JSON.stringify({
 }));
 
 it('renders without crashing', () => { /* eslint no-undef: "off" */
+  jest.useFakeTimers();
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
+  jest.runAllTimers();
 });
