@@ -30,7 +30,7 @@ app.get('/rates', async function (req, res) {
     const cachedRates = await getAsync('rates');
     if (cachedRates) {
       rates = JSON.parse(cachedRates);
-      res.header('Cache-Control', 'public, max-age=10');
+      res.header('Cache-Control', 'public, max-age=60');
       res.send({rates: rates});
     } else {
       try {

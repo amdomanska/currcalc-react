@@ -53,7 +53,7 @@ class App extends Component {
       console.log(err);
       this.setState({namesError: err});
     }
-    setTimeout(this.callNames, 1000);
+    setTimeout(this.callNames, 60000);
   }
 
   setCurrs = (key, val) => {
