@@ -36,7 +36,7 @@ class App extends Component {
       console.log(err);
       this.setState({ ratesError: err });
     }
-    setTimeout(this.callApi, 1000);
+    setTimeout(this.callApi, 60000);
   }
 
   callNames = async () => {

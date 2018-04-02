@@ -42,7 +42,7 @@ app.get('/rates', async function (req, res) {
         if (setAsync) {
           await setAsync('rates', JSON.stringify(rates), 'EX', 60); // expire cache after 60s
         }
-        res.header('Cache-Control', 'public, max-age=10');
+        res.header('Cache-Control', 'public, max-age=60');
         res.send({rates: rates});
       } catch (err) {
         console.error(`error getting rates: ${err}`);
@@ -59,7 +59,7 @@ app.get('/names', async function (req, res) {
     const cachedNames = await getAsync('names');
     if (cachedNames) {
       names = JSON.parse(cachedNames);
-      res.header('Cache-Control', 'public, max-age=10');
+      res.header('Cache-Control', 'public, max-age=60');
       res.send({names: names});
     } else {
       try {
