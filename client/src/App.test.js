@@ -9,7 +9,7 @@ fetchMock.get('*', JSON.stringify({
   }
 }));
 
-it('renders without crashing', () => { /* eslint no-undef: "off" */
+it('renders without crashing', () => {
   jest.useFakeTimers();
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);

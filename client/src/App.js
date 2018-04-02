@@ -19,13 +19,9 @@ class App extends Component {
   }
 
   async componentDidMount () {
-    await this.callApi();
-    await this.callNames();
+    await this.fetchRates();
     this.timer = setInterval(() => {
-      this.callApi().then();
-    }, 60000);
-    this.timer = setInterval(() => {
-      this.callNames().then();
+      this.fetchRates().then();
     }, 60000);
   }
 
@@ -33,34 +29,18 @@ class App extends Component {
     clearInterval(this.timer);
   }
 
-  callApi = async () => {
+  fetchRates = async () => {
     try {
       const response = await fetch('/rates');
       if (response.status === 200) {
         const body = await response.json();
-        this.setState({ rates: body.rates, ratesError: null });
+        this.setState({ rates: body.rates, names: body.info, ratesError: null });
       } else {
         this.setState({ ratesError: 'Error getting currency rates' });
       }
     } catch (err) {
       console.log(err);
       this.setState({ ratesError: err });
-    }
-  }
-
-  callNames = async () => {
-    try {
-      console.log('Fetching names...');
-      const response = await fetch('/names');
-      if (response.status === 200) {
-        const body = await response.json();
-        this.setState({names: body.names, namesError: null});
-      } else {
-        this.setState({namesError: 'Error getting currency names'});
-      }
-    } catch (err) {
-      console.log(err);
-      this.setState({namesError: err});
     }
   }
 

@@ -2,7 +2,8 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
+    'jest/globals': true
   },
   extends: [
     'eslint:recommended',
@@ -19,7 +20,10 @@ module.exports = {
     sourceType: 'module',
     "allowImportExportEverywhere": true
   },
-  plugins: ['react'],
+  plugins: [
+    'react',
+    'jest'
+  ],
   rules: {
     indent: [2, 2, { 'SwitchCase': 1 }],
     'no-console': 0,
@@ -28,4 +32,5 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always']
   }
+
 };
