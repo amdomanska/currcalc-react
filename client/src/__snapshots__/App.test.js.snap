@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders default state 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="rowC"
+  >
+    <div>
+      <input
+        className="value"
+        onChange={[Function]}
+        type="text"
+        value={1}
+      />
+    </div>
+    <div>
+      loading...
+    </div>
+    <div>
+      <p
+        className="result"
+      >
+         = 
+        
+         
+      </p>
+    </div>
+    <div>
+      loading...
+    </div>
+  </div>
+  <footer>
+    <h5>
+      @ data received from api.fixer.io
+    </h5>
+  </footer>
+</div>
+`;

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Dropdown } from './components/Dropdown';
 import { Result } from './components/Result';
 import { Value } from './components/Value';
-import { FullResult } from './components/FullResult';
+import FullResult from './components/FullResult';
 
 class App extends Component {
   constructor (props) {
@@ -70,14 +70,22 @@ class App extends Component {
     return (
       <div className='App'>
         {this.state.ratesError ? <div> {'Couldn not load currencies... Waiting for server... '} </div> : null}
-        {this.state.namesError ? null : <FullResult data={this.state} />}
+        <FullResult {...this.state} />
         <div className='rowC'>
-          <Value value={this.state.currAval} onChange={this.setValue} />
-          <Dropdown onChange={this.setCurrs} currencies={currencies}
-            stateKey={'A'} val={this.state.currA} />
+          <Value
+            value={this.state.currAval}
+            onChange={this.setValue} />
+          <Dropdown
+            onChange={this.setCurrs}
+            currencies={currencies}
+            stateKey={'A'}
+            val={this.state.currA} />
           <Result result={this.state.result} />
-          <Dropdown onChange={this.setCurrs} currencies={currencies}
-            stateKey={'B'} val={this.state.currB} />
+          <Dropdown
+            onChange={this.setCurrs}
+            currencies={currencies}
+            stateKey={'B'}
+            val={this.state.currB} />
         </div>
         <footer>
           <h5>@ data received from api.fixer.io</h5>

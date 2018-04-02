@@ -1,36 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export class FullResult extends React.Component {
-  render () {
-    let result = () => {
-      if (this.props.data.currA &&
-          this.props.data.currB &&
-          !isNaN(this.props.data.currAval) &&
-          !isNaN(this.props.data.result) &&
-          this.props.data.names) {
-        let currA = this.props.data.currA;
-        let currB = this.props.data.currB;
-        let names = this.props.data.names;
-        let nameA = this.props.data.currAval > 1 ? names[currA].name_plural : names[currA].name;
-        let nameB = this.props.data.result > 1 ? names[currB].name_plural : names[currB].name;
-        // console.log(names[curr]);
-        return (
-          <div>
-            <p className='result-first-line'> {this.props.data.currAval} {nameA} equals </p>
-            <p className='result-second-line'> {this.props.data.result} {nameB} </p>
-          </div>
-        );
-      }
-    };
+const FullResult = ({currA, currB, names, currAval, result}) => {
+  if (currA && currB && currAval && result) {
+    const nameA = currAval > 1 ? names[currA].name_plural : names[currA].name;
+    const nameB = result > 1 ? names[currB].name_plural : names[currB].name;
     return (
       <div>
-        { result() }
+        <p className='result-first-line'> {currAval} {nameA} equals </p>
+        <p className='result-second-line'> {result} {nameB} </p>
       </div>
     );
+  } else {
+    return null;
   }
-}
+};
+
+export default FullResult;
 
 FullResult.propTypes = {
-  data: PropTypes.object
+  currA: PropTypes.string,
+  currB: PropTypes.string,
+  currAval: PropTypes.number,
+  names: PropTypes.object,
+  result: PropTypes.number
 };
