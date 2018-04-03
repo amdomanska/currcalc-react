@@ -18,6 +18,7 @@ class App extends Component {
   }
 
   async componentDidMount () {
+    document.title = 'Currency Calculator';
     await this.fetchRates();
     this.timer = setInterval(() => {
       this.fetchRates().then();
