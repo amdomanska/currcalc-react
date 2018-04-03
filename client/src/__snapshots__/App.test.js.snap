@@ -37,14 +37,17 @@ exports[`<App /> renders default state 1`] = `
     <div>
       loading...
     </div>
+  </div>
+  <div
+    className="rowC"
+  >
     <div>
-      <p
-        className="result"
-      >
-         = 
-        
-         
-      </p>
+      <input
+        className="value"
+        onChange={[Function]}
+        type="text"
+        value={1}
+      />
     </div>
     <div>
       loading...
