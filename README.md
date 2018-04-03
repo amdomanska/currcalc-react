@@ -2,6 +2,8 @@
 
 To start the app run in command line:
 
+yarn
+yarn --cwd client
 yarn dev
 
 This project was bootstrapped with Create React App.
