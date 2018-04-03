@@ -11,7 +11,7 @@ export class Dropdown extends React.Component {
       <select
         onChange={event => this.props.onChange(this.props.stateKey, event.target.value)}
       >
-        <option>Choose currency...</option>
+        <option value=''>Choose currency...</option>
         {(this.props.currencies).map((x, i) => <option key={i}>{x}</option>)}
       </select>;
 
