@@ -56,23 +56,14 @@ class App extends Component {
 
   update (keyToChange) {
     const { rates, currA, currB, currAval, currBval } = this.state;
-    console.log(currA, currB, currAval, currBval);
-    if (rates && currA && currB) {
-      const rateA = rates[currA];
-      const rateB = rates[currB];
-      if (keyToChange === 'A') {
-        const newVal = Math.round((currBval * (rateA / rateB)) * 100) / 100;
-        this.setState({currAval: newVal});
-      } else if (keyToChange === 'B') {
-        const newVal = Math.round((currAval * (rateB / rateA)) * 100) / 100;
-        this.setState({currBval: newVal});
-      }
-    } else {
-      if (keyToChange === 'A') {
-        this.setState({currAval: 1});
-      } else if (keyToChange === 'B') {
-        this.setState({currBval: 1});
-      }
+
+    let isStateSet = rates && currA && currB;
+    if (keyToChange === 'A') {
+      const newVal = isStateSet ? Math.round((currBval * (rates[currA] / rates[currB])) * 100) / 100 : 1;
+      this.setState({currAval: newVal});
+    } else if (keyToChange === 'B') {
+      const newVal = isStateSet ? Math.round((currAval * (rates[currB] / rates[currA])) * 100) / 100 : 1;
+      this.setState({currBval: newVal});
     }
   }
 
