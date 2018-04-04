@@ -49,3 +49,7 @@ input, select {
   font-size: 25px;
   color: black;
 }
+
+.hidden {
+  visibility: hidden;
+}
