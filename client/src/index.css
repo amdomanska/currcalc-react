@@ -52,6 +52,10 @@ input, select {
   color: black;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .footer {
   font-size: 10px;
 }
