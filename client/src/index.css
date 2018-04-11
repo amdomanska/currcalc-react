@@ -41,15 +41,28 @@ input, select {
 .rowC{display:flex; flex-direction:row;}
 
 .result-first-line {
+  font-family: 'Lato';
   font-size: 15px;
   color: gray;
 }
 
 .result-second-line {
+  font-family: 'Lato';
   font-size: 25px;
   color: black;
 }
 
+.footer {
+  font-size: 10px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.footer {
+  font-size: 10px;
+}
 .hidden {
   visibility: hidden;
 }
