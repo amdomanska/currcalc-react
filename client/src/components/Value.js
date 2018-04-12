@@ -10,7 +10,7 @@ export class Value extends React.Component {
   render () {
     return (
       <div>
-        <input type='text' className='value' value={this.props.value} onChange={event => this.props.onChange(this.props.stateKey, event.target.value)} />
+        <input type='text' className='value' value={this.props.value} onChange={event => this.props.onChange(event.target.value)} />
       </div>
     );
   }
@@ -18,6 +18,5 @@ export class Value extends React.Component {
 
 Value.propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.number,
-  stateKey: PropTypes.string.isRequired
+  value: PropTypes.number
 };
