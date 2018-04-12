@@ -4,25 +4,6 @@ exports[`<App /> renders default state 1`] = `
 <div
   className="App"
 >
-  <div>
-    <p
-      className="result-first-line hidden"
-    >
-       
-      1
-       
-      Needs to be calculated!
-       equals 
-    </p>
-    <p
-      className="result-second-line hidden"
-    >
-       
-       
-      Needs to be calculated!
-       
-    </p>
-  </div>
   <div
     className="rowC"
   >
