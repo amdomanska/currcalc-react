@@ -96,7 +96,7 @@ class App extends Component {
             val={this.state.currB} />
         </div>
         <footer>
-          <p className='footer'>@ data received from fixer.io</p>
+          <h5>@ data received from api.fixer.io</h5>
         </footer>
       </div>
     );
