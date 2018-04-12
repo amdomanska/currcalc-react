@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
 import { Dropdown } from './components/Dropdown';
-import { Result } from './components/Result';
 import { Value } from './components/Value';
-import FullResult from './components/FullResult';
+import Result from './components/Result';
 
 class App extends Component {
   constructor (props) {
@@ -12,7 +11,7 @@ class App extends Component {
       currA: null,
       currB: null,
       currAval: 1,
-      result: null,
+      currBval: 1,
       names: null
     };
   }
@@ -45,23 +44,26 @@ class App extends Component {
   }
 
   setCurrs = (key, val) => {
-    if (key === 'A') this.setState({currA: val}, () => this.update());
-    if (key === 'B') this.setState({currB: val}, () => this.update());
+    if (key === 'A') this.setState({currA: val}, () => this.update('B'));
+    if (key === 'B') this.setState({currB: val}, () => this.update('A'));
   }
 
-  setValue = (val) => {
-    this.setState({currAval: val}, () => this.update());
+  setValue = (key, val) => {
+    val = Number(val);
+    if (key === 'A') this.setState({currAval: val}, () => this.update('B'));
+    if (key === 'B') this.setState({currBval: val}, () => this.update('A'));
   }
 
-  update () {
-    const { rates, currA, currB, currAval } = this.state;
-    if (rates && currA && currB) {
-      const rateA = rates[currA];
-      const rateB = rates[currB];
-      const newVal = Math.round((currAval * (rateB / rateA)) * 100) / 100;
-      this.setState({result: newVal});
-    } else {
-      this.setState({result: null});
+  update (keyToChange) {
+    const { rates, currA, currB, currAval, currBval } = this.state;
+
+    let isStateSet = rates && currA && currB;
+    if (keyToChange === 'A') {
+      const newVal = isStateSet ? Math.round((currBval * (rates[currA] / rates[currB])) * 100) / 100 : 1;
+      this.setState({currAval: newVal});
+    } else if (keyToChange === 'B') {
+      const newVal = isStateSet ? Math.round((currAval * (rates[currB] / rates[currA])) * 100) / 100 : 1;
+      this.setState({currBval: newVal});
     }
   }
 
@@ -70,17 +72,23 @@ class App extends Component {
     return (
       <div className='App'>
         {this.state.ratesError ? <div> {'Couldn not load currencies... Waiting for server... '} </div> : null}
-        <FullResult {...this.state} />
+        <Result {...this.state} />
         <div className='rowC'>
           <Value
             value={this.state.currAval}
-            onChange={this.setValue} />
+            onChange={this.setValue}
+            stateKey={'A'} />
           <Dropdown
             onChange={this.setCurrs}
             currencies={currencies}
             stateKey={'A'}
             val={this.state.currA} />
-          <Result result={this.state.result} />
+        </div>
+        <div className='rowC'>
+          <Value
+            value={this.state.currBval}
+            onChange={this.setValue}
+            stateKey={'B'} />
           <Dropdown
             onChange={this.setCurrs}
             currencies={currencies}
