@@ -18,6 +18,7 @@ exports[`<App /> renders default state 1`] = `
       className="result-second-line hidden"
     >
        
+      1
        
       Needs to be calculated!
        
@@ -37,14 +38,17 @@ exports[`<App /> renders default state 1`] = `
     <div>
       loading...
     </div>
+  </div>
+  <div
+    className="rowC"
+  >
     <div>
-      <p
-        className="result"
-      >
-         = 
-        
-         
-      </p>
+      <input
+        className="value"
+        onChange={[Function]}
+        type="text"
+        value={1}
+      />
     </div>
     <div>
       loading...
