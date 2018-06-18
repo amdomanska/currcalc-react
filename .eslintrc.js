@@ -3,7 +3,6 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    'jest/globals': true
   },
   extends: [
     'eslint:recommended',
@@ -20,17 +19,14 @@ module.exports = {
     sourceType: 'module',
     "allowImportExportEverywhere": true
   },
-  plugins: [
-    'react',
-    'jest'
-  ],
+ plugins: ["eslint-plugin-react"]
   rules: {
     indent: [2, 2, { 'SwitchCase': 1 }],
-    'no-console': 0,
+    no-console: 0,
     'react/jsx-uses-vars': 2,
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
-    semi: ['error', 'always']
+    linebreak-style: [2, 'unix'],
+    quotes: [2, 'single'],
+    semi: [2, 'always']
   }
 
 };

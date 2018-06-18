@@ -42,7 +42,7 @@ app.get('/rates', async function (req, res) {
     let rates;
     try {
       console.log('fetching rates...');
-      const fixer = await fetch('https://api.fixer.io/latest');
+      const fixer = await fetch('http://data.fixer.io/api/latest?access_key=664d9f8596fa5a484c02f3ed09f50e1f&format=1');
       const json = await fixer.json();
       rates = json.rates;
     } catch (err) {

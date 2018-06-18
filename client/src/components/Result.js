@@ -6,8 +6,8 @@ const Result = ({currA, currB, currAval, currBval, names}) => {
   let nameB = 'Needs to be calculated!';
   let isDataSet = currA && currB && currAval && currBval;
   if (isDataSet) {
-    nameA = currAval > 1 ? names[currA].name_plural : names[currA].name;
-    nameB = currBval > 1 ? names[currB].name_plural : names[currB].name;
+    nameA = currAval > 1 && names[currA].name_plural ? names[currA].name_plural : names[currA].name;
+    nameB = currBval > 1 && names[currB].name_plural ? names[currB].name_plural : names[currB].name;
   }
   return (
     <div>
